@@ -1,29 +1,131 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #d0e6f7;
-    text-align: center;
-    padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #74b9ff 0%, #a29bfe 100%);
+  color: #fff;
+}
+
+.sky::before, .sky::after {
+  content: "";
+  position: absolute;
+  width: 300%;
+  height: 200%;
+  background: url('https://i.ibb.co/G9DC8S0/clouds.png') repeat-x;
+  opacity: 0.25;
+  top: -100px;
+  left: 0;
+  animation: moveClouds 60s linear infinite;
+  z-index: -1;
+}
+.sky::after {
+  animation-duration: 120s;
+  opacity: 0.3;
+}
+
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    display: inline-block;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  padding: 50px 40px;
+  border-radius: 25px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.5s ease;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+h1 {
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  margin-bottom: 25px;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 input {
-    padding: 10px;
-    width: 200px;
-    margin-right: 10px;
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+}
+
+input:focus {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(116, 185, 255, 0.7);
 }
 
 button {
-    padding: 10px 15px;
-    cursor: pointer;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #6c5ce7, #74b9ff);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 15px rgba(108, 92, 231, 0.6);
 }
 
 #weatherResult {
-    margin-top: 20px;
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+  animation: fadeIn 1s ease forwards;
+  color: #fff;
+}
+
+#weatherResult h2 {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+#weatherResult p {
+  font-size: 1.1rem;
+  margin: 5px 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 500px) {
+  .input-group {
+    flex-direction: column;
+  }
+  input, button {
+    width: 100%;
+  }
 }
